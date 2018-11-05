@@ -5,6 +5,6 @@ grasp of the language.
 
 Within the app, that serves a basic to do list, one can add new tasks, delete, and edit.
 
-![Alt text](relative/path/to/app_thumbnail.png?raw=true "Title")
+![Alt](relative/path/to/app_thumbnail.png?raw=true "Title")
 
-![Alt text](relative/path/to/initial_screen.png?raw=true "Title")
+![Alt](relative/path/to/initial_screen.png?raw=true "Title")
