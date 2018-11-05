@@ -5,4 +5,4 @@ grasp of the language.
 
 Within the app, that serves a basic to do list, one can add new tasks, delete, and edit.
 
-![Alt](screenshots.png)
+![Screenshot](./screenshots.png)
