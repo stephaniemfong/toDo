@@ -10,6 +10,8 @@ import UIKit
 
 class ViewController: UIViewController, UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate {
     
+    var toDoItems: [Task] = []
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return toDoItems.count
     }
@@ -17,6 +19,11 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.textLabel?.text = toDoItems[indexPath.item].title
+        if toDoItems[indexPath.item].done {
+            cell.textLabel?.textColor = UIColor.green // set to any colour
+        } else {
+            cell.textLabel?.textColor = UIColor.red // set to any colour
+        }
         return cell
     }
     
@@ -25,12 +32,28 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDataSour
         return true
     }
     
+    //swipe left delete
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == .delete) {
-            // handle delete (by removing the data from your array and updating the tableview)
             self.toDoItems.remove(at: indexPath.row)
             self.toDoList.reloadData()
         }
+    }
+    
+    //swipe right done
+    func tableView(_ tableView: UITableView,
+                   leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?
+    {
+        let doneAction = UIContextualAction(style: .normal, title: "Done", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
+            
+            self.toDoItems[indexPath.row].done = true
+            
+            success(true)
+        })
+        doneAction.backgroundColor = UIColor.green
+        
+        self.toDoList.reloadData()
+        return UISwipeActionsConfiguration(actions: [doneAction])
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -55,7 +78,10 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDataSour
             self.toDoList.reloadData()
         }
         
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        
         editController.addAction(editTaskAction)
+        editController.addAction(cancelAction)
         
         // Create the actions
         let doneAction = UIAlertAction(title: "Done", style: .default)
@@ -74,7 +100,9 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDataSour
         self.present(alertController, animated: true, completion: nil)
     }
     
-    var toDoItems: [Task] = []
+//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+//        cell.backgroundColor = UIColor.blue
+//    }
     
     @IBOutlet weak var newTask: UITextField!
 
