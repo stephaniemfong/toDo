@@ -7,4 +7,5 @@ Within the app, that serves a basic to do list, one can add new tasks, delete, a
 
 Note: download to see picture
 
-![screenshot](./screenshots.png)
+
+![Alt text](relative/path/to/screenshots.png?raw=true "Screenshots")
