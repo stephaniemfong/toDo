@@ -7,4 +7,4 @@ Within the app, that serves a basic to do list, one can add new tasks, delete, a
 
 Note: download to see picture
 
-[[https://github.com/stephaniemfong/toDo/blob/master/screenshots.png]]
+(./screenshots.png)
