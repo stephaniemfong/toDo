@@ -5,7 +5,4 @@ grasp of the language.
 
 Within the app, that serves a basic to do list, one can add new tasks, delete, and edit.
 
-Note: download to see picture
-
-
-![Alt text](./screenshots.png?raw=true "Screenshots")
+![Screenshots](./screenshots.png?raw=true "Screenshots")
